@@ -30,7 +30,7 @@
     <div class="card mt-5">
 
       <!-- cardのheader表示 -->
-      <div class="card-header py-3">
+      <div class="card-header pt-3">
         <div class="row align-items-center">
           <!-- 件名の表示 -->
           <div class="col">
@@ -41,7 +41,7 @@
           <!-- コピーアイコンの表示 -->
           <div class="w-25">
             <template v-if="!titleClip">
-              <button class="btn btn-outline-dark px-3 float-end" @click="copyToClipboard(subject, 'title')">
+              <button class="btn btn-outline-dark float-end" @click="copyToClipboard(subject, 'title')">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
                   <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
                   <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
@@ -49,7 +49,7 @@
               </button>
             </template>
             <template v-else>
-              <button class="btn btn-outline-dark px-3 float-end">
+              <button class="btn btn-outline-dark float-end">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
                   <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
                 </svg>
@@ -60,28 +60,37 @@
       </div>
 
       <!-- cardのbody表示 -->
-      <textarea class="card-body editable-code-body w-100" rows="10">
+      <div class="card-body">
+
+        <!-- コピーアイコンの表示 -->
+        <div>
+          <div class="float-end" v-if="!bodyClip">
+            <button class="btn btn-outline-dark float-end mb-3" @click="copyToClipboard(modified_content, 'body')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+                <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+              </svg>
+            </button>
+          </div>
+          <div class="float-end"  v-else>
+            <button class="btn btn-outline-dark float-end mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+              </svg>
+            </button>  
+          </div>
+        </div>
+
+        <!-- テキストエリアの表示 -->
+        <textarea class="editable-code-body w-100 my-3" rows="10">
           {{ modified_content }}
-      </textarea>
+        </textarea>
+
+      </div>
 
     </div>
 
-    <!-- コピーアイコンの表示 -->
-    <div class="float-end w-25" v-if="!bodyClip">
-      <button class="btn btn-outline-dark float-end mt-3" @click="copyToClipboard(modified_content, 'body')">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
-          <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-          <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
-        </svg>
-      </button>
-    </div>
-    <div class="float-end w-25"  v-else>
-      <button class="btn btn-outline-dark float-end mt-3">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-          <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-        </svg>
-      </button>  
-    </div>
+    
 
   </template>
   <br><br><br><br>

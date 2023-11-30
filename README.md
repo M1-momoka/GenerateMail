@@ -32,6 +32,10 @@
 
 ![step3](imgs/step3.png)
 
+4. ERRORの場合
+
+![step4](imgs/step4.png)
+
 <br>
 
 ## 技術的な詳細
